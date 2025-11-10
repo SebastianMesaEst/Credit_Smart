@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CreditSmart · Simulador</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">CreditSmart</h1>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="simulador.html" class="active">Simulador</a></li>
+          <li><a href="solicitar.html">Solicitar Crédito</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <section class="simulator">
+      <h2>Simulador de Créditos</h2>
+      <form class="search-panel" id="searchForm" onsubmit="return false;">
+        <div class="form-row"><label for="q">Buscar por producto</label><input id="q" type="search" placeholder="Ej: Vivienda, Vehículo..."></div>
+        <div class="form-row"><label for="range">Rango de monto</label><select id="range"><option value="all">Todos</option><option value="low">Hasta $5.000.000</option><option value="medium">$5.000.000 - $50.000.000</option><option value="high">Más de $50.000.000</option></select></div>
+        <div class="form-actions"><button class="btn" type="button" onclick="applyFilters()">Buscar</button><button class="btn ghost" type="button" onclick="resetFilters()">Limpiar</button></div>
+      </form>
+      <section id="results" class="cards-grid"></section>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><p>&copy; <span id="year2"></span> CreditSmart</p></div></footer>
+
+  <script>
+    const products = [
+      { name:'Crédito Libre Inversión', max:30000000, img:'assets/credito-libre.svg' },
+      { name:'Crédito Vehículo', max:50000000, img:'assets/credito-vehiculo.svg' },
+      { name:'Crédito Vivienda', max:200000000, img:'assets/credito-vivienda.svg' }
+    ];
+    const results=document.getElementById('results');
+    function renderCards(list){results.innerHTML='';list.forEach(p=>{const c=document.createElement('div');c.className='card';c.innerHTML=`<img src="${p.img}" class="card-img"><div class="card-body"><h3>${p.name}</h3></div>`;results.appendChild(c);});}
+    function applyFilters(){const q=document.getElementById('q').value.toLowerCase();const r=document.getElementById('range').value;let f=products.filter(p=>p.name.toLowerCase().includes(q));if(r==='low')f=f.filter(p=>p.max<=5000000);if(r==='medium')f=f.filter(p=>p.max>5000000&&p.max<=50000000);if(r==='high')f=f.filter(p=>p.max>50000000);renderCards(f);}
+    function resetFilters(){document.getElementById('q').value='';document.getElementById('range').value='all';renderCards(products);}
+    renderCards(products);document.getElementById('year2').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
