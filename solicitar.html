@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>CreditSmart · Solicitar Crédito</title><link rel="stylesheet" href="styles.css"/></head>
+<body>
+<header class="site-header"><div class="container header-inner"><h1 class="brand">CreditSmart</h1><nav class="main-nav"><ul><li><a href="index.html">Inicio</a></li><li><a href="simulador.html">Simulador</a></li><li><a href="solicitar.html" class="active">Solicitar Crédito</a></li></ul></nav></div></header>
+<main class="container main-content">
+<section class="form-section"><h2>Formulario de Solicitud de Crédito</h2>
+<form class="loan-form" onsubmit="return false;">
+<fieldset><legend>Datos personales</legend><label>Nombre completo<input type="text" required></label><label>Cédula<input type="number" required></label><label>Email<input type="email" required></label></fieldset>
+<fieldset><legend>Datos del crédito</legend><label>Tipo<select required><option value="">--Seleccione--</option><option>Libre Inversión</option><option>Vehículo</option><option>Vivienda</option></select></label><label>Monto<input type="number" required></label></fieldset>
+<div class="form-actions"><button class="btn" type="button" onclick="alert('Formulario de diseño')">Enviar</button><button class="btn ghost" type="reset">Limpiar</button></div>
+</form></section></main>
+<footer class="site-footer"><div class="container"><p>&copy; <span id="year3"></span> CreditSmart</p></div></footer>
+<script>document.getElementById('year3').textContent=new Date().getFullYear();</script>
+</body></html>
++

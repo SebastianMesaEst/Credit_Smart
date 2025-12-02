@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CreditSmart · Catálogo de Créditos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">CreditSmart</h1>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul>
+          <li><a href="index.html" class="active">Inicio</a></li>
+          <li><a href="simulador.html">Simulador</a></li>
+          <li><a href="solicitar.html">Solicitar Crédito</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <section class="hero">
+      <h2>Encuentra el crédito que mejor se adapte a ti</h2>
+      <p>Compara tasas, montos y plazos. Solicita online en pocos pasos.</p>
+    </section>
+
+    <section aria-labelledby="catalogo-title" class="catalog">
+      <h2 id="catalogo-title">Catálogo de Productos</h2>
+
+      <div class="cards-grid">
+        <article class="card"><img src="assets/credito-libre.svg" alt="Crédito Libre Inversión" class="card-img" />
+          <div class="card-body"><h3>Crédito Libre Inversión</h3><p class="rate">Tasa: <strong>12.5% anual</strong></p><p class="amount">Monto: desde $1.000.000 hasta $30.000.000</p><p class="term">Plazo máximo: 60 meses</p><div class="card-actions"><a href="solicitar.html" class="btn">Solicitar</a><a href="#" class="btn ghost">Ver detalles</a></div></div></article>
+        <article class="card"><img src="assets/credito-vehiculo.svg" alt="Crédito Vehículo" class="card-img" />
+          <div class="card-body"><h3>Crédito Vehículo</h3><p class="rate">Tasa: <strong>9.8% anual</strong></p><p class="amount">Monto: desde $5.000.000 hasta $50.000.000</p><p class="term">Plazo máximo: 72 meses</p><div class="card-actions"><a href="solicitar.html" class="btn">Solicitar</a><a href="#" class="btn ghost">Ver detalles</a></div></div></article>
+        <article class="card"><img src="assets/credito-vivienda.svg" alt="Crédito Vivienda" class="card-img" />
+          <div class="card-body"><h3>Crédito Vivienda</h3><p class="rate">Tasa: <strong>7.2% anual</strong></p><p class="amount">Monto: desde $10.000.000 hasta $200.000.000</p><p class="term">Plazo máximo: 240 meses</p><div class="card-actions"><a href="solicitar.html" class="btn">Solicitar</a><a href="#" class="btn ghost">Ver detalles</a></div></div></article>
+      </div>
+    </section>
++\n
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>&copy; <span id="year"></span> CreditSmart · FinTech Solutions S.A.S</p></div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
