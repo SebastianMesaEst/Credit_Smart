@@ -1,14 +1,39 @@
-import React from 'react';
+import React from "react";
 
-export default function CreditCard({ name, rate, amount, img }) {
+export default function CreditCard({ credit }) {
+  const formatAmount = (amount) => {
+    return new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'COP',
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
   return (
-    <article className="card">
-      {img && <img src={img} alt={name} className="card-img" />}
-      <div className="card-body">
-        <h3>{name}</h3>
-        <p className="rate">Tasa: <strong>{rate}% anual</strong></p>
-        <p className="amount">Monto: {amount.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits:0 })}</p>
+    <div className="credit-card">
+      <h2>{credit.name}</h2>
+      <p>{credit.description}</p>
+      
+      <div className="credit-card-highlight">
+        <p><strong>Tasa de Interés:</strong></p>
+        <p style={{ fontSize: "1.5rem", color: "#f59e0b", fontWeight: "bold" }}>
+          {(credit.interestRate * 100).toFixed(2)}%
+        </p>
       </div>
-    </article>
+
+      <div style={{ marginBottom: "1rem" }}>
+        <p><strong>Monto Mínimo:</strong></p>
+        <p style={{ color: "#2563eb", fontSize: "1.1rem" }}>{formatAmount(credit.minAmount)}</p>
+      </div>
+
+      <div>
+        <p><strong>Monto Máximo:</strong></p>
+        <p style={{ color: "#2563eb", fontSize: "1.1rem" }}>{formatAmount(credit.maxAmount)}</p>
+      </div>
+
+      <button className="btn btn-primary" style={{ marginTop: "auto" }}>
+        Solicitar este Crédito
+      </button>
+    </div>
   );
 }
