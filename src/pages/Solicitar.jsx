@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { credits } from "../data/creditsData";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Solicitar() {
   const [formData, setFormData] = useState({
@@ -75,7 +77,7 @@ export default function Solicitar() {
     setSuccessMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -87,17 +89,21 @@ export default function Solicitar() {
       return;
     }
 
-    // Guardar solicitud
-    const newApplication = {
-      id: Date.now(),
-      ...formData,
-      monthlyFee: calculateMonthlyFee(),
-      creditName: selectedCredit?.name,
-      date: new Date().toLocaleDateString('es-ES'),
-    };
-
-    setApplications(prev => [...prev, newApplication]);
-    setSuccessMessage("✅ ¡Solicitud enviada exitosamente! Tu solicitud ha sido registrada.");
+    // Guardar solicitud en Firestore
+    try {
+      const docRef = await addDoc(collection(db, "applications"), {
+        ...formData,
+        monthlyFee: calculateMonthlyFee(),
+        creditName: selectedCredit?.name,
+        date: new Date().toLocaleDateString('es-ES'),
+      });
+      console.log("Solicitud guardada con ID: ", docRef.id);
+      setSuccessMessage("✅ ¡Solicitud enviada exitosamente! Tu solicitud ha sido registrada.");
+    } catch (e) {
+      console.error("Error al guardar: ", e);
+      setSuccessMessage("❌ Error al enviar la solicitud. Inténtalo de nuevo.");
+      return; // No limpiar si hay error
+    }
     
     // Limpiar formulario
     setTimeout(() => {
